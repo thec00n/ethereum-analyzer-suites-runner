@@ -19,7 +19,7 @@
 
 This repo aims to be a collection of benchmarks suites for evaluating the precision of EVM code analysis tools.
 
-If you just want to see the reports created as a result of running the various analyzers over the benchmark suites, you can find that [here](https://ethereumanalysisbenchmarks.github.io/). 
+If you just want to see the reports created as a result of running the various analyzers over the benchmark suites, you can find that [here](https://ethereumanalysisbenchmarks.github.io/).
 
 It started out as is a fork of Suhabe Bugara's excellent benchmark
 suite, and [this
@@ -39,7 +39,7 @@ Since there is a git submodule in this repository clone using the `--recurse-sub
 $ git clone --recurse-submodules https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites.git
 ```
 
-### Forgot to `--recurse-submodules` on clone
+### Forgot to `--recurse-submodules` on clone?
 
 _Only_ If you forget the `--recurse-submodules` on the `git clone` do the following:
 
@@ -79,7 +79,7 @@ Input arguments:
                         Currently supported: `Mythril`, `Manticore`
 - `-v`, `--verbose`     More verbose output; use twice for the most verbose output
 - `-t`, `--timeout`     Maximum time allowed on any single benchmark. Default 7 seconds
-- `--files`             Print list of files in benchmark and exit  
+- `--files`             Print list of files in benchmark and exit
 
 **Description:**
 The first program `runner/run.py` takes a number of command-line
@@ -104,7 +104,7 @@ example the output of `run.py` for the Suhabe benchmark suite will be a
 file called `benchdata/Suhabe/Mythril.yaml`.
 
 ### runner/report.py (https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/blob/master/runner/report.py)
-Takes the aforementioned data YAML files and creates a HTML report from that.  
+Takes the aforementioned data YAML files and creates a HTML report from that.
 Input arguments:
 - `-s`, `--suite`       Benchmark suite name. Default `Suhabe`,
 
