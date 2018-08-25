@@ -1,8 +1,12 @@
-import re
 import json
+import os
+import pprint
+import re
 
-from .AnalyserResult import *
-from .BaseAnalyser import *
+from .AnalyserResult import AnalyserResult
+from .BaseAnalyser import AnalyserError, BaseAnalyser
+
+pp = pprint.PrettyPrinter(indent=4)
 
 
 class Mythril(BaseAnalyser):
@@ -44,7 +48,7 @@ class Mythril(BaseAnalyser):
 
         m = re.search(r'Mythril version (.+)', output)
         if not m:
-            raise AnalyserError("Can not read Mythril version '{}'".format(output))
+            raise AnalyserException("Can not read Mythril version '{}'".format(output))
 
         self._version = m.group(1)
 
@@ -70,7 +74,7 @@ class Mythril(BaseAnalyser):
         try:
             data = json.loads(res['stdout'])
         except Exception as e:
-            AnalyserError("Can not parse output: '{}'".format(str(e)), res['returncode'], res['cmd'])
+            raise AnalyserError("Can not parse output: '{}'".format(str(e)), res['returncode'], res['cmd'])
 
         if self.debug:
             pp.pprint(data)

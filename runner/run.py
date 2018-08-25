@@ -2,14 +2,16 @@
 """
 top-level CLI to run benchmarks
 """
-import os, sys, time
-import yaml
-import click
-import pprint
 from pathlib import Path
 from glob import glob
+import click
+import os
+import sys
+import time
+import yaml
 from analysers import get_analyser, list_analysers, AnalyserError, AnalyserTimeoutError
 
+import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
 code_root_dir = Path(__file__).parent.resolve()
@@ -147,10 +149,10 @@ def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files):
         # Read expected data and initialize output variables
         expected_data = testsuite_conf.get(test_name, None)
         bench_data = out_data['benchmarks'][test_name] = {}
-        bench_data['bug_type'] = expected_data.get('bug_type', 'Unknown')
-        bench_data['expected_data'] = expected_data
 
         if expected_data:
+            bench_data['bug_type'] = expected_data.get('bug_type', 'Unknown')
+            bench_data['expected_data'] = expected_data
             run_time = expected_data.get('run_time', timeout)
             if expected_data.get('ignore', None):
                 # Test case ignored

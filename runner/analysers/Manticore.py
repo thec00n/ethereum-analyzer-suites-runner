@@ -1,10 +1,13 @@
+import os
+import pprint
 import re
 import shutil
 from pathlib import Path
 
-from .AnalyserResult import *
-from .BaseAnalyser import *
+from .AnalyserResult import AnalyserResult
+from .BaseAnalyser import AnalyserError, BaseAnalyser
 
+pp = pprint.PrettyPrinter(indent=4)
 
 class Manticore(BaseAnalyser):
     """
