@@ -160,21 +160,30 @@
       </tbody>
     </table>
   
+    <h2>Report summary</h2>
     <table class="table table-sm table-hover">
-      <tr style="font-weight: bold">
-        <td>Bug Type</td>
-        <td>Benchmark</td>
-      </tr>
-      <tr>
-        <td><b>summary stats</b></td>
-        <td>{{data['benchmark_count']}} tests</td>
+      <thead>
+        <tr style="font-weight: bold">
+          <td>Analyzer</td>
+          <td>Benchmark tests</td>
+          <td>Total time</td>
+          <td>Expected</td>
+          <td>Unexpected</td>
+        </tr>
+      </thead>
+      <tbody>
         {% for analyzer, result in data['analyzers'].items() %}
-          <td>{{result['total_time_str']}}</td>
-          <td>{{result['expected']}} expected, {{result['error_execution']}} unexpected</td>
+          <tr>
+            <td><b>{{ analyzer }} {{data['analyzers'][analyzer]['version']}}</b></td>
+            <td>{{data['benchmark_count']}}</td>
+            <td>{{result['total_time_str']}}</td>
+            <td>{{result['expected']}}</td>
+            <td>{{result['error_execution']}}</td>
+          </tr>
         {% endfor %}
-      </tr>
+      </tbody>
     </table>
-
+    <hr>
   <!--- breakout per result ---->
 
   <h2 id="result-details" class="mt-4">Results Details</h2>
