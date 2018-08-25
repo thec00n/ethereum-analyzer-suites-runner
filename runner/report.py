@@ -100,7 +100,7 @@ def print_html_report(data, project_root_dir, suite):
 
     source_code = {}
     bug_type_eval = {}
-    base_url_dir_raw = data['benchmark_url_dir']
+    base_url_dir_raw = "%s/%s" % (data['benchmark_url_dir'], data['benchmark_subdir'])
     base_url_dir = "%s/tree/master/%s" % (data['benchmark_link'], data['benchmark_subdir'])
     bench_data = {}
     for bench_name in data['benchmarks'].keys():
