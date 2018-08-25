@@ -37,7 +37,7 @@ class Mythril(BaseAnalyser):
         """
         Execute Mythril and set application version
 
-        :raise AnalyserException:
+        :raise AnalyserError:
         """
         res = self._execute('--version')
 
@@ -48,7 +48,7 @@ class Mythril(BaseAnalyser):
 
         m = re.search(r'Mythril version (.+)', output)
         if not m:
-            raise AnalyserException("Can not read Mythril version '{}'".format(output))
+            raise AnalyserError("Can not read Mythril version '{}'".format(output))
 
         self._version = m.group(1)
 
