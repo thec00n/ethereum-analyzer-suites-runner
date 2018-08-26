@@ -172,8 +172,8 @@ def generate_benchmark_report(suite):
                     if name not in data['benchmarks']:
                         data['benchmarks'][name] = {}
                     data['benchmarks'][name][analyser] = result
-                    data['benchmarks'][name]['bug_type'] = result['bug_type']
-                    if 'link' in result['expected_data']:
+                    data['benchmarks'][name]['bug_type'] = result.get('bug_type', 'Unconfigured')
+                    if 'link' in result.get('expected_data', []):
                         data['benchmarks'][name]['link'] = result['expected_data']['link']
 
                 data['benchmark_count'] = len(data['benchmarks'])
