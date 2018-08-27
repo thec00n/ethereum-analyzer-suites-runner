@@ -63,9 +63,9 @@ def get_benchmark_yaml(project_root_dir, suite_name, analyzer, debug):
     testsuite_conf_path = project_root_dir / 'benchconf' / "{}.yaml".format(suite_name)
     if not testsuite_conf_path.exists():
         return {}
-    testsuite_conf = yaml.load(open(testsuite_conf_path, 'r'))
+    testsuite_conf = yaml.load(open(str(testsuite_conf_path), 'r'))
     analyzer_conf_path = project_root_dir / 'benchconf' / "{}-{}.yaml".format(suite_name, analyzer)
-    analyzer_conf = yaml.load(open(analyzer_conf_path, 'r'))
+    analyzer_conf = yaml.load(open(str(analyzer_conf_path), 'r'))
     # Merge two configurations
     conf = {**testsuite_conf, **analyzer_conf}
     # We still need to values are themselves dictionaries
@@ -89,7 +89,7 @@ def gather_benchmark_files(root_dir, suite_name, benchmark_subdir):
     :return: Sorted list of benchmark files
     """
     testsuite_benchdir = root_dir.parent / 'benchmarks' / suite_name / benchmark_subdir
-    os.chdir(testsuite_benchdir)
+    os.chdir(str(testsuite_benchdir))  # str() for 3.5 compatibility
     return sorted(glob('**/*.sol', recursive=True))
 
 
