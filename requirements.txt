@@ -1,9 +1,6 @@
 PyYAML
 click
-click
 jinja2
-manticore
 markdown2
-mythril
 pygments
 pygments-lexer-solidity
