@@ -152,18 +152,24 @@ reentrancy/Reentrancy:
     - address: 455
       code: 'msg.sender.call.value(amount)()'
       title: 'Message call to external contract'
+    - address: 455
+      code: 'msg.sender.call.value(amount)()'
+      title: 'Multiple Calls'
     - address: 575
       code: 'msg.sender.call.value(userBalance[msg.sender])()'
       title: 'Ether send'
     - address: 575
       code: 'msg.sender.call.value(userBalance[msg.sender])()'
       title: 'Message call to external contract'
-    - address: 657
-      code: 'userBalance[msg.sender] = 0'
-      title: 'State change after external call'
+    - address: 575
+      code: 'msg.sender.call.value(userBalance[msg.sender])()'
+      title: 'Mutiple Calls'
     - address: 729
       code: 'userBalance[msg.sender] += msg.value'
       title: 'Integer Overflow'
+    - address: 848
+      code: 'msg.sender.transfer(userBalance[msg.sender])'
+      title: 'Ether send'
     - address: 848
       code: 'msg.sender.transfer(userBalance[msg.sender])'
       title: 'Ether send'
