@@ -9,15 +9,21 @@
       border: 1px solid #cccccc;
       border-collapse: collapse;
     }
+
     table {
       font-size: 12px;
     }
+
     td {
       padding: 5px;
       align: center;
       width: 150px;
     }
-        
+
+    td.linenos {
+       width: 3%;
+    }
+
     .highlight .hll { background-color: #ffffcc }
     .highlight  { background: #f8f8f8; }
     .highlight .c { color: #408080; font-style: italic } /* Comment */
@@ -113,7 +119,7 @@
       <h1 class="display-5 text-center">Analysis Tool Evaluation for the <br><a href="{{data['benchmark_link']}}">{{data['suite']}}</a> Benchmark</h1>
       <p class="text-center"><small>2018-08-23 13:27:38</small></p>
       <p class="lead">This page shows the results EVM code analysis tools when run over the <a href="{{data['benchmark_link']}}">{{data['suite']}}</a> benchmark suite.</p>
-      <p>The code is <a href="https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites">hosted on github</a>. 
+      <p>The code is <a href="https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites">hosted on github</a>.
           Please suggest or contribute more benchmarks or submit <a href="https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/issues">suggestions or issues</a>.</p>
     </div>
 
@@ -130,7 +136,7 @@
     <p>See the project
     wiki's <a href="https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/wiki/Terminology">Terminology</a>
       entry for definitions used below.</p>
-    
+
     <table class="table table-sm table-hover">
       <thead>
         <tr style="font-weight: bold">
@@ -159,7 +165,7 @@
 	      {% endfor %}
       </tbody>
     </table>
-  
+
     <h2>Report summary</h2>
     <table class="table table-sm table-hover">
       <thead>
