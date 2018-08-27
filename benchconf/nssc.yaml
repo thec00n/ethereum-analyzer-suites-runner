@@ -22,7 +22,7 @@
 # a bug which doesn't have a serious effect.
 #
 
-suite: 'Not (so) Smart Contracts'
+suite: '(Not so) Smart Contracts'
 
 benchmark_link: https://github.com/trailofbits/not-so-smart-contracts
 benchmark_subdir: ''
