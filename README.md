@@ -71,7 +71,7 @@ We assme the benchmark suite repositories is set up using in git via the `--recu
 * run an analyzer over a benchmark suite, and
 * generate HTML reports for a benchmark suite that we have gathered data for in the previous step
 
-### runner/run.py (https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/blob/master/runner/run.py)
+### [runner/run.py](https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/blob/master/runner/run.py)
 Executes specified benchmark suite.
 Input arguments:
 - `-s`, `--suite`       Benchmark suite name. Default `Suhabe`. Currently supported: `Suhabe`, `nssc`
@@ -103,7 +103,7 @@ with a subfolder under that with the name of the benchmark. For
 example the output of `run.py` for the Suhabe benchmark suite will be a
 file called `benchdata/Suhabe/Mythril.yaml`.
 
-### runner/report.py (https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/blob/master/runner/report.py)
+### [runner/report.py](https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/blob/master/runner/report.py)
 Takes the aforementioned data YAML files and creates a HTML report from that.
 Input arguments:
 - `-s`, `--suite`       Benchmark suite name. Default `Suhabe`,
