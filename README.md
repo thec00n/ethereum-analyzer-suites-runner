@@ -8,6 +8,7 @@
     - [Cloning](#cloning)
     - [Benchmarks have changed?](#benchmarks-have-changed)
     - [Project setup](#project-setup)
+    - [Analysers setup](#analysers-setup)
     - [About Python Code to Run Benchmarks and Create Reports](#about-python-code-to-run-benchmarks-and-create-reports)
     - [Adding additional analyser to benchmark](#adding-additional-analyser-to-benchmark)
     - [See also](#see-also)
@@ -63,6 +64,37 @@ The reports programs are written in Python 3.6 or better. To install dependent P
 ```console
 $ pip install -r requirements.txt
 ```
+
+## Analysers setup
+Analysers are not part of project dependencies and they should be installed manually. The reason for this was to make setup not dependent on analysers failures (there might be some) and to make it possible for user to select specific analysers to benchmark, instead of installing all of them.  
+
+Below, you will find a list of supported analysers with installation instructions and known bugs that prevents installation or makes analyser unworkable.
+
+### [Mythril](https://github.com/ConsenSys/mythril)
+Available in PyPi
+```console
+$ pip install mythril
+```
+
+### [Manticore](https://github.com/trailofbits/manticore)
+Available in PyPi
+```console
+$ pip install manticore
+```
+
+Known bugs:
+- `ValueError: not allowed to raise maximum limit`
+  * Description: Latest version in PyPi - `0.2.0` fails during analyser execution
+  * Workaround: Source code in master branch already contains fix. Thus, while the new version for PyPi is not released manticore must be installed manually:
+  ```console
+  $ git clone https://github.com/trailofbits/manticore.git
+  $ cd manticore/
+  $ pip install .
+  ```
+
+- Installation fails on MacOS
+  * Description: https://github.com/trailofbits/manticore/issues/1075
+  * Workaround: n/a. On some systems with MacOS it was possible to successfully install it, therefore try to install at firsts.
 
 ## About Python Code to Run Benchmarks and Create Reports
 
