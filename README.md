@@ -94,7 +94,7 @@ Known bugs:
 
 - Installation fails on MacOS
   * Description: https://github.com/trailofbits/manticore/issues/1075
-  * Workaround: n/a, but you can try to install it at first, as bug may  
+  * Workaround: n/a. On some systems with MacOS it was possible to successfully install it, therefore try to install at firsts.
 
 ## About Python Code to Run Benchmarks and Create Reports
 
