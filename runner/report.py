@@ -80,8 +80,8 @@ def print_html_report(data, project_root_dir, suite):
             result += ', Bytecode offset: %s' % bytecode_offset
         return result
 
-    def highlight_code(code):
-        return highlight(code, SolidityLexer(), HtmlFormatter())
+    def highlight_code(code, linenos=False):
+        return highlight(code, SolidityLexer(), HtmlFormatter(linenos=linenos))
 
     eval_colors = Eval_colors
     bug_type_links = {}
@@ -108,7 +108,7 @@ def print_html_report(data, project_root_dir, suite):
         bench_url = "%s%s%s.sol" % (base_url_dir, os.path.sep, bench_name)
         r = requests.get(bench_url_raw)
         solidity_code = r.text
-        source_code[bench_name] = highlight_code(solidity_code)
+        source_code[bench_name] = highlight_code(solidity_code, linenos=True)
         bench_data[bench_name] = data['benchmarks'][bench_name]
         bench_data[bench_name]['bench_url'] = bench_url
 
