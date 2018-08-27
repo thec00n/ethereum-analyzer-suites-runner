@@ -10,7 +10,7 @@ import sys
 import time
 import yaml
 from analysers import get_analyser, list_analysers, AnalyserError, AnalyserTimeoutError
-
+from os.path import basename
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -63,9 +63,9 @@ def get_benchmark_yaml(project_root_dir, suite_name, analyzer, debug):
     testsuite_conf_path = project_root_dir / 'benchconf' / "{}.yaml".format(suite_name)
     if not testsuite_conf_path.exists():
         return {}
-    testsuite_conf = yaml.load(open(str(testsuite_conf_path), 'r'))
+    testsuite_conf = yaml.load(open(testsuite_conf_path, 'r'))
     analyzer_conf_path = project_root_dir / 'benchconf' / "{}-{}.yaml".format(suite_name, analyzer)
-    analyzer_conf = yaml.load(open(str(analyzer_conf_path), 'r'))
+    analyzer_conf = yaml.load(open(analyzer_conf_path, 'r'))
     # Merge two configurations
     conf = {**testsuite_conf, **analyzer_conf}
     # We still need to values are themselves dictionaries
@@ -89,11 +89,11 @@ def gather_benchmark_files(root_dir, suite_name, benchmark_subdir):
     :return: Sorted list of benchmark files
     """
     testsuite_benchdir = root_dir.parent / 'benchmarks' / suite_name / benchmark_subdir
-    os.chdir(str(testsuite_benchdir))  # str() for 3.5 compatibility
+    os.chdir(testsuite_benchdir)
     return sorted(glob('**/*.sol', recursive=True))
 
 
-def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files):
+def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files, bench):
     """ Run an analyzer (like Mythril) on a benchmark suite.
     :param analyser: BaseAnalyser child instance
     :param suite: Name of test suite
@@ -101,6 +101,7 @@ def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files):
     :param debug: Whether debug is on
     :param timeout: Test execution timeout
     :param files: When True, prints list of solidity files and exits
+    :param bench: When not None, gives a list of solidity files to filter on
     :return:
     """
     print("Using {} {}".format(analyser.get_name(), analyser.version))
@@ -108,6 +109,10 @@ def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files):
     testsuite_conf = get_benchmark_yaml(project_root_dir, suite, analyser.get_name(), debug)
     benchmark_files = gather_benchmark_files(code_root_dir, suite,
                                              testsuite_conf['benchmark_subdir'])
+
+    if bench:
+        benchmark_files = [path for path in benchmark_files
+                           if basename(path) in bench]
 
     out_data = {
         'analyzer': analyser.get_name(),
@@ -317,7 +322,12 @@ def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files):
               help="Maximum time allowed on any single benchmark.")
 @click.option('--files/--no-files', default=False,
               help="List files in benchmark and exit.")
-def main(suite, analyser, verbose, timeout, files):
+@click.option('--bench', '-b', multiple=True, type=click.Path(),
+              help="Filter which benchmark file(s) in benchmark suite to use. "
+              "This option can be given many times. If it is omitted, all files "
+              "in the suite are included. "
+              "Give just the path basename, but include the path extension, e.g. Reentrancy.sol")
+def main(suite, analyser, verbose, timeout, files, bench):
     debug = verbose == 2
 
     analyser_instance = None
@@ -327,7 +337,7 @@ def main(suite, analyser, verbose, timeout, files):
         try:
             analyser_cls = get_analyser(tool)
             analyser_instance = analyser_cls(debug, timeout)
-            run_benchmark_suite(analyser_instance, suite, verbose, debug, timeout, files)
+            run_benchmark_suite(analyser_instance, suite, verbose, debug, timeout, files, bench)
         except AnalyserError as e:
             print("Failed to initialize analyser. Program '{}' failed with {} error code".format(e.cmd, e.returncode))
             sys.exit(1)
