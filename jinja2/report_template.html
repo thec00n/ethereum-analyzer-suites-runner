@@ -208,6 +208,7 @@
                 <th>Description</th>
               {% endif %}
               {% for analyzer in data['analyzers'].keys() %}
+                <th>Time</th>
                 <th>
                   {{analyzer}}
                   <span style="font-size: 10px">{{data['analyzers'][analyzer]['version']}}</span>
@@ -224,6 +225,7 @@
                 </td>
               {% endif %}
               {% for analyzer in data['analyzers'].keys() %}
+                <td>{{bench_data[bench_name][analyzer]['elapsed_str']}}</td>
                 <td style="background-color:
                     {{eval_colors[bench_data[bench_name][analyzer]['result']]}}">
                   {{link_issue_result(bench_data[bench_name][analyzer]['result'])|safe}}
