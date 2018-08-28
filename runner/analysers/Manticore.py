@@ -39,7 +39,7 @@ class Manticore(BaseAnalyser):
         """
         return self._version
 
-    def run_test(self, sol_file):
+    def run_test(self, sol_file, run_opts):
         """
         Execute Manticore on specified solidity file
         Issue format:
@@ -49,11 +49,13 @@ class Manticore(BaseAnalyser):
             'code': Part of source code that failed
 
         :param sol_file: Path to solidity file
+        'run_opts': Additional command-line options to pass
         :return: AnalyserResult
         :raises AnalyserError:
         :raises AnalyserTimeoutError:
         """
-        res = self._execute('--detect-all', str(sol_file))
+        run_opts += ['--detect-all', str(sol_file)]
+        res = self._execute(*run_opts)
 
         if res['returncode'] != 0:
             raise AnalyserError('Failed to get run Manticore', res['returncode'], res['cmd'])

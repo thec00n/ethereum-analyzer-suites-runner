@@ -110,9 +110,18 @@ def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files, bench):
     benchmark_files = gather_benchmark_files(code_root_dir, suite,
                                              testsuite_conf['benchmark_subdir'])
 
+    if not benchmark_files:
+        print("No benchmark files found in suite {}".format(suite))
+        return 1
+
     if bench:
         benchmark_files = [path for path in benchmark_files
                            if basename(path) in bench]
+
+    if not benchmark_files:
+        print("No benchmark files found in suite {} after filtering {}"
+              .format(suite, bench))
+        return 1
 
     out_data = {
         'analyzer': analyser.get_name(),
@@ -153,6 +162,7 @@ def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files, bench):
 
         # Read expected data and initialize output variables
         expected_data = testsuite_conf.get(test_name, None)
+        run_opts = expected_data.get('options', [])
         bench_data = out_data['benchmarks'][test_name] = {}
 
         if expected_data:
@@ -180,7 +190,7 @@ def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files, bench):
                 continue
 
         try:
-            res = analyser.run_test(sol_file)
+            res = analyser.run_test(sol_file, run_opts)
         except AnalyserError as e:
             print("{} invocation:\n\t{}\n failed with return code {}.\n\tError: {}"
                   .format(analyser.get_name(), e.cmd, e.returncode, str(e)))
@@ -329,6 +339,7 @@ def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files, bench):
               "Give just the path basename, but include the path extension, e.g. Reentrancy.sol")
 def main(suite, analyser, verbose, timeout, files, bench):
     debug = verbose == 2
+    exit_code = 0
 
     analyser_instance = None
     analysers = list_analysers() if analyser == 'all' else [analyser]
@@ -337,15 +348,20 @@ def main(suite, analyser, verbose, timeout, files, bench):
         try:
             analyser_cls = get_analyser(tool)
             analyser_instance = analyser_cls(debug, timeout)
-            run_benchmark_suite(analyser_instance, suite, verbose, debug, timeout, files, bench)
+            exit_code = run_benchmark_suite(analyser_instance, suite, verbose,
+                                            debug, timeout, files, bench)
         except AnalyserError as e:
-            print("Failed to initialize analyser. Program '{}' failed with {} error code".format(e.cmd, e.returncode))
-            sys.exit(1)
+            print("Failed to initialize analyzer. "
+                  "Program '{}' failed with {} error code"
+                  .format(e.cmd, e.returncode))
+            exit_code = e.returncode
         finally:
             if analyser_instance:
                 print("{} analyser finished. Cleaning up".format(analyser_instance.get_name()))
                 analyser_instance.cleanup()
 
+    # "click" setting exit code this way...
+    sys.exit(exit_code)
 
 if __name__ == '__main__':
     main()
