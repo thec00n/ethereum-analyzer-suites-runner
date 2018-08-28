@@ -71,7 +71,7 @@ class AnalyserResult:
                 continue
 
             # Verify that found issue is the the expected one by comparing additional fields
-            for key in ('title', 'address', 'code', 'contract'):
+            for key in ('title', 'address', 'code'):
                 if key in issue and issue.get(key) != found_issue.get(key):
                     print("Mismatched issue data in {}".format(test_name))
                     pp.pprint(issue)
