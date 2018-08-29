@@ -68,10 +68,15 @@ eth_tx_order_dependence_2:
   issues: []
 
 eth_tx_order_dependence_minimal:
+  run_time: 300.0
   ignore: false
-  issues: []
+  issues:
+    - address: 96
+      code: 'assert(false)'
+      title: 'INVALID instruction'
 
 eth_tx_order_dependence_multitx_1:
+  run_time: 300.0
   ignore: false
 
 eth_tx_order_dependence_puzzle:
@@ -121,6 +126,7 @@ integer_overflow_mapping_staticarray:
   issues: []
 
 integer_overflow_mapping_strkey:
+  run_time: 120.0
   ignore: false
   run_time: 35.0
 
@@ -157,6 +163,7 @@ integer_overflow_mul:
       title: 'Unsigned integer overflow at MUL instruction'
 
 integer_overflow_multitx_multifunc_feasible:
+  run_time: 120.0
   ignore: false
   issues:
     - address: 219
@@ -252,5 +259,6 @@ reentrancy_dao_fixed:
       title: 'Unsigned integer overflow at ADD instruction'
 
 reentrancy_nostateeffect:
+  options: ["--contract", "Benchmark"]
   ignore: false
   issues: []

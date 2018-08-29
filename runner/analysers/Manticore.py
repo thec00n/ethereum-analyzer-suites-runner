@@ -49,7 +49,7 @@ class Manticore(BaseAnalyser):
             'code': Part of source code that failed
 
         :param sol_file: Path to solidity file
-        'run_opts': Additional command-line options to pass
+        :param run_opts: Additional command-line options to pass
         :return: AnalyserResult
         :raises AnalyserError:
         :raises AnalyserTimeoutError:

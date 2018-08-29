@@ -77,12 +77,6 @@ eth_tx_order_dependence_minimal:
     - address: 554
       code: 'owner.transfer(reward)'
       title: 'Transaction order dependence'
-    - address: 716
-      code: 'msg.sender.transfer(reward)'
-      title: 'Ether send'
-    - address: 716
-      code: 'msg.sender.transfer(reward)'
-      title: 'Transaction order dependence'
 
 eth_tx_order_dependence_multitx_1:
   ignore: false
@@ -246,21 +240,9 @@ integer_overflow_storagepacking:
 reentrancy_dao:
   ignore: false
   issues:
-    - address: 200
-      code: 'balance -= oCredit'
-      title: 'Integer Underflow'
     - address: 247
       code: 'msg.sender.call.value(oCredit)()'
       title: 'Message call to external contract'
-    - address: 332
-      code: 'credit[msg.sender] = 0'
-      title: 'State change after external call'
-    - address: 407
-      code: 'credit[msg.sender] += msg.value'
-      title: 'Integer Overflow'
-    - address: 423
-      code: 'balance += msg.value'
-      title: 'Integer Overflow'
 
 reentrancy_dao_fixed:
   ignore: false

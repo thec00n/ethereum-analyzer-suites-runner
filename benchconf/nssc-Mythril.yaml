@@ -82,7 +82,7 @@ honeypots/Multiplicator/Multiplicator:
     - address: 567
       title: 'Ether send'
     - address: 567
-      title: 'Mutiple Calls'
+      title: 'Multiple Calls'
 
 honeypots/PrivateBank/PrivateBank:
   ignore: false
@@ -175,7 +175,7 @@ reentrancy/Reentrancy:
     - address: 575
       title: 'Message call to external contract'
     - address: 575
-      title: 'Mutiple Calls'
+      title: 'Multiple Calls'
     - address: 729
       title: 'Integer Overflow'
     - address: 848
