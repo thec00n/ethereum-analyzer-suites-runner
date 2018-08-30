@@ -52,7 +52,7 @@ class Mythril(BaseAnalyser):
 
         self._version = m.group(1)
 
-    def run_test(self, sol_file):
+    def run_test(self, sol_file, run_opts):
         """
         Execute Mythril on specified solidity file.
         Issue format:
@@ -65,7 +65,8 @@ class Mythril(BaseAnalyser):
         :raises AnalyserError:
         :raises AnalyserTimeoutError:
         """
-        res = self._execute('-x', '-o', 'json', str(sol_file))
+        run_opts += ['-x', '-o', 'json', str(sol_file)]
+        res = self._execute(*run_opts)
 
         if res['returncode'] != 0:
             AnalyserError("Failed to get run Mythril", res['returncode'], res['cmd'])

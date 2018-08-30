@@ -4,10 +4,10 @@
 # A description of some fields:
 
 # The top-level key is the name and file basename
-# of the subhabe benchmark
+# of the Suhabe benchmark
 # file without ".sol" extension suffix
 
-# ignore: skip test because there is a known problem
+# ignore: skip test because there is a known problem.
 # When this field is true, there should be a
 # "reason:" field
 #
@@ -39,7 +39,6 @@ assert_multitx_1:
   ignore: false
 
 assert_multitx_2:
-  bug_type: 'Assertion'
   run_time: 120.0
   ignore: false
   issues:
@@ -68,10 +67,15 @@ eth_tx_order_dependence_2:
   issues: []
 
 eth_tx_order_dependence_minimal:
+  run_time: 300.0
   ignore: false
-  issues: []
+  issues:
+    - address: 96
+      code: 'assert(false)'
+      title: 'INVALID instruction'
 
 eth_tx_order_dependence_multitx_1:
+  run_time: 300.0
   ignore: false
 
 eth_tx_order_dependence_puzzle:
@@ -121,6 +125,7 @@ integer_overflow_mapping_staticarray:
   issues: []
 
 integer_overflow_mapping_strkey:
+  run_time: 120.0
   ignore: false
   run_time: 35.0
 
@@ -157,6 +162,7 @@ integer_overflow_mul:
       title: 'Unsigned integer overflow at MUL instruction'
 
 integer_overflow_multitx_multifunc_feasible:
+  run_time: 120.0
   ignore: false
   issues:
     - address: 219
@@ -252,5 +258,6 @@ reentrancy_dao_fixed:
       title: 'Unsigned integer overflow at ADD instruction'
 
 reentrancy_nostateeffect:
+  options: ["--contract", "Benchmark"]
   ignore: false
   issues: []

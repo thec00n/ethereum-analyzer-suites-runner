@@ -4,11 +4,11 @@
 # A description of some fields:
 
 # The top-level key is the name and file basename
-# of the subhabe benchmark
+# of the Suhabe benchmark
 # file without ".sol" extension suffix
 
-# ignore: skip test because there is a known problem
-# shen this field is true, there should be a
+# ignore: skip test because there is a known problem.
+# When this field is true, there should be a
 # "reason:" field
 #
 # run_time: This field is optional. When given, it suggests a
@@ -42,7 +42,6 @@ assert_multitx_1:
       title: Exception state
 
 assert_multitx_2:
-  bug_type: 'Assertion'
   ignore: false
   issues:
     - address: 161
@@ -76,12 +75,6 @@ eth_tx_order_dependence_minimal:
       title: 'Ether send'
     - address: 554
       code: 'owner.transfer(reward)'
-      title: 'Transaction order dependence'
-    - address: 716
-      code: 'msg.sender.transfer(reward)'
-      title: 'Ether send'
-    - address: 716
-      code: 'msg.sender.transfer(reward)'
       title: 'Transaction order dependence'
 
 eth_tx_order_dependence_multitx_1:
@@ -246,21 +239,9 @@ integer_overflow_storagepacking:
 reentrancy_dao:
   ignore: false
   issues:
-    - address: 200
-      code: 'balance -= oCredit'
-      title: 'Integer Underflow'
     - address: 247
       code: 'msg.sender.call.value(oCredit)()'
       title: 'Message call to external contract'
-    - address: 332
-      code: 'credit[msg.sender] = 0'
-      title: 'State change after external call'
-    - address: 407
-      code: 'credit[msg.sender] += msg.value'
-      title: 'Integer Overflow'
-    - address: 423
-      code: 'balance += msg.value'
-      title: 'Integer Overflow'
 
 reentrancy_dao_fixed:
   ignore: false

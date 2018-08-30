@@ -4,8 +4,12 @@
 # A description of some fields:
 
 # The top-level key is the name and file basename
-# of the subhabe benchmark
+# of the (Not so) Smart Contract benchmark
 # file without ".sol" extension suffix
+
+# options: additional command-line options
+# For Manticore, we need to specify a contract name when a Solidity file
+# has more than one contract in it.
 
 # ignore: skip test because there is a known problem.
 # When this field is true, there should be a
@@ -23,16 +27,17 @@
 honeypots/GiftBox/GiftBox:
   ignore: true
   reason: 'Manticore hangs with an exception: NameError: name "EthereumError" is not defined'
-  run_time: 140.0
+  run_time: 300.0
   issues: []
 
 honeypots/KOTH/KOTH:
+  options: ["--contract", "CEOThrone"]
   ignore: false
   issues: []
 
 honeypots/Lottery/Lottery:
   ignore: false
-  run_time: 70.0
+  run_time: 400.0
   issues:
     - address: 1204
       code: 'block.number - 1'
@@ -46,11 +51,13 @@ honeypots/Lottery/Lottery:
 
 honeypots/Multiplicator/Multiplicator:
   ignore: false
+  run_time: 500.0
   issues: []
 
 honeypots/PrivateBank/PrivateBank:
+  options: ["--contract", "Private_Bank"]
   ignore: false
-  run_time: 180.0
+  run_time: 600.0
   issues: []
 
 honeypots/VarLoop/VarLoop:
@@ -62,6 +69,7 @@ honeypots/VarLoop/VarLoop:
       title: 'Ether send'
 
 incorrect_interface/Alice:
+  run_time: 180.00
   ignore: false
   issues: []
 
@@ -71,6 +79,7 @@ incorrect_interface/Bob:
 
 integer_overflow/interger_overflow_1:
   ignore: false
+  run_time: 400.0
   issues:
     - address: 229
       code: 'sellerBalance += value'
@@ -81,16 +90,18 @@ missing_constructor/Missing:
   issues: []
 
 missing_constructor/Rubixi_source_code/Rubixi:
-  ignore: false
+  ignore: true
+  reason: "solc doesn't compile it - issue #15"
   issues: []
 
 race_condition/RaceCondition:
+  options: ["--contract", "RaceCondition"]
   ignore: false
   issues: []
 
 reentrancy/DAO_source_code/DAO:
-  ignore: false
-  issues: []
+  ignore: true
+  reason: "solc doesn't compile it - issue #14"
 
 reentrancy/Reentrancy:
   ignore: false
@@ -102,17 +113,18 @@ reentrancy/ReentrancyExploit:
   issues: []
 
 unchecked_external_call/KotET_source_code/KingOfTheEtherThrone:
-  ignore: false
-  issues: []
+  ignore: true
+  reason: "solc doesn't compile it - issue #16"
 
 unprotected_function/Unprotected:
   ignore: false
   issues: []
 
 unprotected_function/WalletLibrary_source_code/WalletLibrary:
-  ignore: false
-  issues: []
+  ignore: true
+  reason: "solc doesn't compile it"
 
 variable shadowing/inherited_state:
+  options: ["--contract", "Suicidal"]
   ignore: false
   issues: []
