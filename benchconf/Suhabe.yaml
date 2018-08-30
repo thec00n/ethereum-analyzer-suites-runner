@@ -96,7 +96,7 @@ integer_overflow_bytes_param:
 
 integer_overflow_dynarray:
   bug_type: 'Integer Overflow'
-  has_bug: true
+  has_bug: false
 
 integer_overflow_mapping_mapping:
   bug_type: 'Integer Overflow'
