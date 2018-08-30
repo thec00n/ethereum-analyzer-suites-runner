@@ -3,15 +3,14 @@
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [Solidity Benchmark Suites for Evaluating EVM Code-Analysis tools, and Code to Run them](#solidity-benchmark-suites-for-evaluating-evm-code-analysis-tools-and-code-to-run-them)
-    - [Introduction](#introduction)
-    - [Cloning](#cloning)
-    - [Benchmarks have changed?](#benchmarks-have-changed)
-    - [Project setup](#project-setup)
-    - [Analysers setup](#analysers-setup)
-    - [About Python Code to Run Benchmarks and Create Reports](#about-python-code-to-run-benchmarks-and-create-reports)
-    - [Adding additional analyser to benchmark](#adding-additional-analyser-to-benchmark)
-    - [See also](#see-also)
+- [Introduction](#introduction)
+- [Cloning](#cloning)
+- [Benchmarks have changed?](#benchmarks-have-changed)
+- [Project setup](#project-setup)
+- [Analysers setup](#analysers-setup)
+- [About Python Code to Run Benchmarks and Create Reports](#about-python-code-to-run-benchmarks-and-create-reports)
+- [Adding additional analyser to benchmark](#adding-additional-analyser-to-benchmark)
+- [See also](#see-also)
 
 <!-- markdown-toc end -->
 
