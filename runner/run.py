@@ -243,7 +243,7 @@ def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files, bench):
         bench_data['issues'] = res.issues
 
         if not res.issues:
-            if not expected_data['has_bug']:
+            if (not expected_data['has_bug']) or expected_data['has_bug'] == 'benign':
                 print("No problems found and none expected")
                 bench_data['result'] = 'True Negative'
                 expected += 1
@@ -260,8 +260,12 @@ def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files, bench):
                 print("Found a problem where none was expected")
                 bench_data['result'] = 'False Positive'
                 error_execution += 1
+            elif expected_data['has_bug'] == 'benign':
+                print("Found a benign problem")
+                bench_data['result'] = 'Benign'
+                expected += 1
 
-                continue
+            continue
 
         # The test has a bug, and analysis terminated normally
         # finding some sort of problem. Did we detect the right problem?

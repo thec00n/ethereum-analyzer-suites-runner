@@ -41,7 +41,7 @@ assert_minimal:
 
 assert_multitx_1:
   bug_type: 'Assertion'
-  has_bug: true
+  has_bug: false
 
 assert_multitx_2:
   bug_type: 'Assertion'

@@ -48,9 +48,9 @@ class AnalyserResult:
     def _find_issue(self, issue):
         for i in self._issues:
             # Search by (location or address) and contract fields
+            if i.get('contract') and i.get('contract') != issue.get('contract'):
+                break
             for key in ('address', 'location'):
-                if i.get('contract') and i.get('contract') != issue.get('contract'):
-                    break
                 if key in i and i.get(key) != issue.get(key):
                     break
             else:
@@ -71,7 +71,7 @@ class AnalyserResult:
                 continue
 
             # Verify that found issue is the the expected one by comparing additional fields
-            for key in ('title', 'address', 'code'):
+            for key in ('title', 'code'):
                 if key in issue and issue.get(key) != found_issue.get(key):
                     print("Mismatched issue data in {}".format(test_name))
                     pp.pprint(issue)

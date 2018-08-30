@@ -4,7 +4,9 @@
 top-level CLI to create an HTML benchmark report
 """
 
-import os, sys
+import datetime
+import os
+import sys
 import yaml
 import click
 import pprint
@@ -37,6 +39,7 @@ Eval_colors = {
     'False Negative'     : RGB_RED,
     'Errored'            : RGB_RED,
     'Wrong Vulnerability': RGB_RED,
+    'Benign'             : RGB_GREEN,
     'True Positive'      : RGB_GREEN,
     'True Negative'      : RGB_GREEN,
     'Analysis Failed'    : RGB_YELLOW,
@@ -117,6 +120,7 @@ def print_html_report(data, project_root_dir, suite):
                  trim_blocks=True)
 
     # Set up some variables for render
+    date = str(datetime.datetime.now())
     t.globals = locals()
     html_path = suite_path / "index.html"
 

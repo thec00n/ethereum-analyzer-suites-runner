@@ -4,11 +4,11 @@
 # A description of some fields:
 
 # The top-level key is the name and file basename
-# of the subhabe benchmark
+# of the Suhabe benchmark
 # file without ".sol" extension suffix
 
-# ignore: skip test because there is a known problem
-# shen this field is true, there should be a
+# ignore: skip test because there is a known problem.
+# When this field is true, there should be a
 # "reason:" field
 #
 # run_time: This field is optional. When given, it suggests a
@@ -42,7 +42,6 @@ assert_multitx_1:
       title: Exception state
 
 assert_multitx_2:
-  bug_type: 'Assertion'
   ignore: false
   issues:
     - address: 161
