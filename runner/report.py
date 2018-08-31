@@ -65,7 +65,7 @@ def print_html_report(data, project_root_dir, suite):
 
     def link_issue_result(issue_result):
         return link_to("%s/%s" %
-                       ("https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/wiki",
+                       ("https://github.com/EthereumAnalysisBenchmarks/ethereum-analyzer-suites-runner/wiki",
                         issue_result.replace(' ', '-')),
                        issue_result)
 
