@@ -27,7 +27,7 @@ class AnalyserResult:
     @property
     def failed(self):
         """
-        :return: True if test execution failed, otherwise Fals
+        :return: True if test execution failed, otherwise False
         """
         return self._error is not None and not self._error
 

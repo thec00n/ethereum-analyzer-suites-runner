@@ -107,7 +107,7 @@ Executes specified benchmark suite.
 Input arguments:
 - `-s`, `--suite`       Benchmark suite name. Default `Suhabe`. Currently supported: `Suhabe`, `nssc`
 - `-a`, `--analyser`    Analyser to benchmark. If not set all supported analysers will be benchmarked.
-                        Currently supported: `Mythril`, `Manticore`
+                        Currently supported: `Mythril`, `Manticore`, `Oyente`
 - `-v`, `--verbose`     More verbose output; use twice for the most verbose output
 - `-t`, `--timeout`     Maximum time allowed on any single benchmark. Default 7 seconds
 - `--files`             Print list of files in benchmark and exit
