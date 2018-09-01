@@ -48,6 +48,7 @@ class BaseAnalyser:
         cmd = [self._program, *args]
         # subprocess timeout does not work with processes that starts multiple child processes
         # therefore, as a workaround there is a need to use Popen() and kill process group instead
+        print(" ".join(cmd))
         proc = Popen(cmd, stdout=PIPE, stderr=PIPE, preexec_fn=os.setsid)
 
         timer = Timer(self.timeout, lambda: os.killpg(os.getpgid(proc.pid), signal.SIGTERM))

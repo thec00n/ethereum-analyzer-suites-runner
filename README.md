@@ -36,7 +36,7 @@ Reports from running `runner/run.py` and `runner/report.py` are [here](https://E
 Since there is a git submodule in this repository clone using the `--recurse-submodules` option. For example:
 
 ```console
-$ git clone --recurse-submodules https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites.git
+$ git clone --recurse-submodules https://github.com/EthereumAnalysisBenchmarks/ethereum-analyzers-suites-runner.git
 ```
 
 ### Forgot to `--recurse-submodules` on clone?
@@ -48,8 +48,8 @@ $ git submodule init
 Submodule 'benchmarks/Suhabe' (https://github.com/ConsenSys/evm-analyzer-benchmark-suite.git) registered for path 'benchmarks/Suhabe'
 Submodule 'benchmarks/nssc' (https://github.com/trailofbits/not-so-smart-contracts.git) registered for path 'benchmarks/nssc'
 $ git submodule update
-Cloning into '/src/external-vcs/github/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/benchmarks/Suhabe'...
-Cloning into '/src/external-vcs/github/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/nchmarks/nssc'...
+Cloning into '/src/external-vcs/github/EthereumAnalysisBenchmarks/ethereum-analyzers-suites-runner/benchmarks/Suhabe'...
+Cloning into '/src/external-vcs/github/EthereumAnalysisBenchmarks/ethereum-analyzers-suites-runner/nchmarks/nssc'...
 ...
 ```
 
@@ -65,7 +65,7 @@ $ pip install -r requirements.txt
 ```
 
 ## Analysers setup
-Analysers are not part of project dependencies and they should be installed manually. The reason for this was to make setup not dependent on analysers failures (there might be some) and to make it possible for user to select specific analysers to benchmark, instead of installing all of them.  
+Analysers are not part of project dependencies and they should be installed manually. The reason for this was to make setup not dependent on analysers failures (there might be some) and to make it possible for user to select specific analysers to benchmark, instead of installing all of them.
 
 Below, you will find a list of supported analysers with installation instructions and known bugs that prevents installation or makes analyser unworkable.
 
@@ -102,7 +102,7 @@ We assme the benchmark suite repositories is set up using in git via the `--recu
 * run an analyzer over a benchmark suite, and
 * generate HTML reports for a benchmark suite that we have gathered data for in the previous step
 
-### [runner/run.py](https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/blob/master/runner/run.py)
+### [runner/run.py](https://github.com/EthereumAnalysisBenchmarks/ethereum-analyzers-suites-runner/blob/master/runner/run.py)
 Executes specified benchmark suite.
 Input arguments:
 - `-s`, `--suite`       Benchmark suite name. Default `Suhabe`. Currently supported: `Suhabe`, `nssc`
@@ -120,21 +120,21 @@ file has information about the benchmark suite: the names of the files
 in the benchmarks, whether the benchmark is supposed to succeed or
 fail with a vulnerability, and possibly other information. An example
 of such a YAML file is
-[benchconf/Suhabe.yaml](https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/blob/master/benchconf/Suhabe.yaml). The
+[benchconf/Suhabe.yaml](https://github.com/EthereumAnalysisBenchmarks/ethereum-analyzers-suites-runner/blob/master/benchconf/Suhabe.yaml). The
 other YAML input configuration file is specific to the analyzer. For
 Mythril on the Suhabe benchmark, it is called
-[benchconf/Suhabe-Mythril.yaml](https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/blob/master/benchconf/Suhabe-Mythril.yaml)
+[benchconf/Suhabe-Mythril.yaml](https://github.com/EthereumAnalysisBenchmarks/ethereum-analyzers-suites-runner/blob/master/benchconf/Suhabe-Mythril.yaml)
 
 For each new Benchmark suite, these two YAML files will need to
 exist. The second one you can start out with an empty file.
 
 The output is a YAML file which is stored in the folder
-[`benchdata`](https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/tree/master/benchdata)
+[`benchdata`](https://github.com/EthereumAnalysisBenchmarks/ethereum-analyzers-suites-runner/tree/master/benchdata)
 with a subfolder under that with the name of the benchmark. For
 example the output of `run.py` for the Suhabe benchmark suite will be a
 file called `benchdata/Suhabe/Mythril.yaml`.
 
-### [runner/report.py](https://github.com/EthereumAnalysisBenchmarks/evm-analyzer-bench-suites/blob/master/runner/report.py)
+### [runner/report.py](https://github.com/EthereumAnalysisBenchmarks/ethereum-analyzers-suites-runner/blob/master/runner/report.py)
 Takes the aforementioned data YAML files and creates a HTML report from that.
 Input arguments:
 - `-s`, `--suite`       Benchmark suite name. Default `Suhabe`,

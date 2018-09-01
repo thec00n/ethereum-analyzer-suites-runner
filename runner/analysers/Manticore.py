@@ -57,6 +57,7 @@ class Manticore(BaseAnalyser):
         run_opts += ['--detect-all', str(sol_file)]
         res = self._execute(*run_opts)
 
+        # No issues found
         if res['returncode'] != 0:
             raise AnalyserError('Failed to get run Manticore', res['returncode'], res['cmd'])
 
