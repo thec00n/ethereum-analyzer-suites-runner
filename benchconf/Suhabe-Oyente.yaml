@@ -1,0 +1,262 @@
+# This contains expected results
+# when Oyente runs the Suhabe benchmark suite
+
+# A description of some fields:
+
+# The top-level key is the name and file basename
+# of the subhabe benchmark
+# file without ".sol" extension suffix
+
+# ignore: skip test because there is a known problem.
+# When this field is true, there should be a
+# "reason:" field
+#
+# run_time: This field is optional. When given, it suggests a
+# pessimistic amount of time in seconds needed by the analyzer program
+# the to give results. If not value is given, then a value is supplied
+# by either as a command-line option or failing that through the
+# runner's built-in default which is about 7.0 seconds.
+# The value is a floating-point number.
+
+# issues: a list of issues we expect to see
+
+assert_constructor:
+  ignore: false
+  issues:
+    - location: assert_constructor.sol:4
+      code: assert(false)
+      title: 'Assertion Failure'
+
+assert_minimal:
+  ignore: false
+  issues:
+    - location: assert_minimal.sol:5
+      code: 'assert(false)'
+      title: 'Assertion Failure'
+
+assert_multitx_1:
+  ignore: false
+  issues:
+    - location: assert_multitx_1.sol:12
+      code: assert(param > 0)
+      title: 'Assertion Failure'
+
+assert_multitx_2:
+  bug_type: 'Assertion'
+  ignore: false
+  issues:
+    - location: assert_multitx_2.sol:12
+      code: 'assert(param > 0)'
+      title: 'Assertion Failure'
+
+assert_require:
+  ignore: false
+  issues: []
+
+assert_sym:
+  ignore: false
+  issues:
+    - location: assert_sym.sol:5
+      code: 'assert(param > 0)'
+      title: 'Assertion Failure'
+
+attribute_store:
+  ignore: false
+  issues: []
+
+eth_tx_order_dependence_2:
+  ignore: false
+  issues: []
+
+eth_tx_order_dependence_minimal:
+  ignore: false
+  issues:
+    - location: eth_tx_order_dependence_minimal.sol:16
+      code: 'owner.transfer(reward)'
+      title: 'Transaction-Ordering Dependency'
+    - location: eth_tx_order_dependence_minimal.sol:24
+      code: 'msg.sender.transfer(reward)'
+      title: 'Transaction-Ordering Dependency'
+
+eth_tx_order_dependence_multitx_1:
+  ignore: false
+  issues:
+    - location: eth_tx_order_dependence_multitx_1.sol:18
+      code: owner.transfer(reward)
+      title: 'Transaction-Ordering Dependency'
+    - location: eth_tx_order_dependence_multitx_1.sol:31
+      code: msg.sender.transfer(reward)
+      title: 'Transaction-Ordering Dependency'
+
+eth_tx_order_dependence_puzzle:
+  ignore: false
+  run_time: 120.0
+  # Note the dup issues  below
+  issues: []
+
+integer_overflow_add:
+  ignore: false
+  issues:
+    - location: integer_overflow_add.sol:10
+      code: 'count += input'
+      title: 'Integer Overflow'
+
+integer_overflow_benign_1:
+  ignore: false
+  issues: []
+
+integer_overflow_benign_2:
+  ignore: false
+  run_time: 30.0
+  issues:
+    - location: integer_overflow_benign_2.sol:22
+      code: "sub(a,b)"
+      title: 'Integer Overflow'
+    - location: integer_overflow_benign_2.sol:23
+      code: "add(res,b)"
+      title: 'Integer Overflow'
+
+integer_overflow_bytes_param:
+  ignore: false
+  run_time: 30.0
+
+integer_overflow_dynarray:
+  ignore: false
+  issues:
+    - title: 'Integer Overflow'
+      location: integer_overflow_dynarray.sol:5
+
+integer_overflow_mapping_staticarray:
+  ignore: false
+  issues: []
+
+integer_overflow_mapping_strkey:
+  ignore: false
+  run_time: 35.0
+
+integer_overflow_mapping_struct:
+  ignore: false
+
+integer_overflow_mapping_sym_1:
+  ignore: false
+  issues:
+    - location: integer_overflow_mapping_sym_1.sol:7
+      code: 'map[k] -= v'
+      title: 'Integer Underflow'
+
+integer_overflow_mapping_sym_2:
+  ignore: false
+  issues: []
+
+integer_overflow_mapping_mapping:
+  ignore: false
+  issues: []
+
+integer_overflow_mapping_word:
+  ignore: false
+  issues: []
+
+integer_overflow_minimal:
+  ignore: false
+  issues:
+    - location: integer_overflow_minimal.sol:10
+      code: 'count -= input'
+      title: 'Integer Underflow'
+
+integer_overflow_mul:
+  ignore: false
+  issues:
+    - location: integer_overflow_mul.sol:10
+      code: 'count *= input'
+      title: 'Integer Overflow'
+
+integer_overflow_multitx_multifunc_feasible:
+  ignore: false
+  issues:
+    - location: integer_overflow_multitx_multifunc_feasible.sol:19
+      code: 'count -= input'
+      title: 'Integer Underflow'
+
+
+integer_overflow_multitx_onefunc_feasible:
+  ignore: false
+  issues:
+    - location: integer_overflow_multitx_onefunc_feasible.sol:16
+      code: 'count -= input'
+      title: 'Integer Underflow'
+
+integer_overflow_multitx_onefunc_infeasible:
+  ignore: false
+  issues:
+    - location: integer_overflow_multitx_onefunc_infeasible.sol:15
+      code: 'count -= input'
+      title: 'Integer Underflow'
+
+integer_overflow_path_1:
+  ignore: false
+  issues: []
+
+integer_overflow_staticarray:
+  ignore: false
+  issues: []
+
+integer_overflow_storageinvariant:
+  ignore: false
+  benign: true
+  issues:
+    - location: integer_overflow_storageinvariant.sol:12
+      code: 'balance -= oCredit'
+      title: 'Integer Underflow'
+    - location: integer_overflow_storageinvariant.sol:18
+      code: 'credit[msg.sender] += msg.value'
+      title: 'Integer Overflow'
+    - location: integer_overflow_storageinvariant.sol:19
+      code: 'balance += msg.value'
+      title: 'Integer Overflow'
+
+integer_overflow_storagepacking:
+  ignore: false
+  issues: []
+
+reentrancy_dao:
+  ignore: false
+  issues:
+    - location: reentrancy_dao.sol:10
+      code: 'balance -= oCredit'
+      title: 'Integer Underflow'
+    - location: reentrancy_dao.sol:11
+      code: 'bool callResult = msg.sender.call.value(oCredit)()'
+      title: 'Re-Entrancy Vulnerability'
+    - location: reentrancy_dao.sol:13
+      code: 'credit[msg.sender] = 0'
+      note: Not sure whether the title is correct for Oyente
+      title: 'State change after external call'
+    - location: reentrancy_dao.sol:18
+      code: 'credit[msg.sender] += msg.value'
+      title: 'Integer Overflow'
+    - location: reentrancy_dao.sol:19
+      code: 'balance += msg.value'
+      title: 'Integer Overflow'
+
+reentrancy_dao_fixed:
+  ignore: false
+  issues:
+    - location: reentrancy_dao_fixed.sol:10
+      code: 'balance -= oCredit'
+      title: 'Integer Underflow'
+    - location: reentrancy_dao_fixed.sol:12
+      code: 'msg.sender.call.value(oCredit)()'
+      title: 'Re-Entrancy Vulnerability'
+    - location: reentrancy_dao_fixed.sol:18
+      code: 'credit[msg.sender] += msg.value'
+      title: 'Integer Overflow'
+    - location: reentrancy_dao_fixed.sol:19
+      code: 'balance += msg.value'
+      title: 'Integer Overflow'
+
+reentrancy_nostateeffect:
+  ignore: false
+  issues:
+    - location: reentrancy_nostateeffect.sol:10
+      code: 'Runner(base).run(param)'
+      title: 'Re-Entrancy Vulnerability'

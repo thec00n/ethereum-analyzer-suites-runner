@@ -1,6 +1,7 @@
 from .BaseAnalyser import BaseAnalyser, AnalyserError, AnalyserTimeoutError
 from .Mythril import Mythril
 from .Manticore import Manticore
+from .Oyente import Oyente
 
 
 def get_analyser(name):
