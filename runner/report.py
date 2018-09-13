@@ -66,15 +66,14 @@ def print_html_report(data, project_root_dir, suite):
     def link_issue_result(issue_result):
         try:
             return link_to("%s/%s" %
-                           ("https://github.com/EthereumAnalysisBenchmarks/ethereum-analyzer-suites-runner/wiki",
+                           ("https://github.com/SmartContractSecurity/ethereum-analyzer-suites-runner/wiki",
                             issue_result.replace(' ', '-')),
                            issue_result)
         except:
             return link_to("%s/%s" %
-                           ("https://github.com/EthereumAnalysisBenchmarks/ethereum-analyzer-suites-runner/wiki",
+                           ("https://github.com/SmartContractSecurity/ethereum-analyzer-suites-runner/wiki",
                             'unknown'),
                             issue_result)
-
 
     def link_source_line(source_url, line_number):
         return link_to("%s#L%d" % (source_url, line_number),
