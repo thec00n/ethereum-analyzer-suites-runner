@@ -264,6 +264,9 @@ def run_benchmark_suite(analyser, suite, verbose, debug, timeout, files, bench):
                 print("Found a benign problem")
                 bench_data['result'] = 'Benign'
                 expected += 1
+            else:
+                bench_data['result'] = 'True Positive'
+                expected += 1
 
             continue
 
