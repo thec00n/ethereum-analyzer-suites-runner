@@ -95,6 +95,31 @@ Known bugs:
   * Description: https://github.com/trailofbits/manticore/issues/1075
   * Workaround: n/a. On some systems with MacOS it was possible to successfully install it, therefore try to install at firsts.
 
+### [Oyente](https://github.com/melonproject/oyente)
+Available in PyPi
+```console
+$ pip install oyente
+```
+
+Known bugs:
+- Bug preventing Oyente installation through pip
+  * Description: https://github.com/melonproject/oyente/issues/350
+  * Workaround: Install Oyente manually from master branch.
+  ```console
+  $ git clone https://github.com/melonproject/oyente.git
+  $ cd oyente
+  $ pip install .
+  ```
+- `ModuleNotFoundError: No module named 'symExec'` error on startup
+  * Description: https://github.com/melonproject/oyente/pull/347
+  * Workaround: Add Oyente into PYTHONPATH
+  ```console
+  $ python -c 'import oyente; print(oyente.__path__)'   # Get Oyente installation path
+  $ export OYENTE=<oyente installation path>\oyente.py  # Set environment variable for benchmark application
+  $ chmod +x <oyente installation path>\oyente.py       # Set execution flag
+  $ export PYTHONPATH=<oyente installation path>
+  ```
+
 ## About Python Code to Run Benchmarks and Create Reports
 
 We assme the benchmark suite repositories is set up using in git via the `--recurse-submodules` switch described above. With this in place, the two Python programs are run in sequence to:
